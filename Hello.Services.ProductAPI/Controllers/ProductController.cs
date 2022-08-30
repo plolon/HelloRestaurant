@@ -90,8 +90,8 @@ namespace Hello.Services.ProductAPI.Controllers
         {
             try
             {
-                await productRepository.Delete(id);
-                return HandleResponse.GetSuccessResponse(true, "");
+                var isSuccess = await productRepository.Delete(id);
+                return HandleResponse.GetSuccessResponse(isSuccess, "");
             }
             catch (Exception ex)
             {

@@ -12,6 +12,7 @@ namespace Hello.Services.ProductAPI.Repositories
             {
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IProductRepository, ProductRepository>();
             return services;
         }

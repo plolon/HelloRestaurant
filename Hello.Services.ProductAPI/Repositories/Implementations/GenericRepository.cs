@@ -1,14 +1,13 @@
-﻿using Hello.Services.ProductAPI.DTOs;
-using Hello.Services.ProductAPI.Repositories.Interfaces;
+﻿using Hello.Services.ProductAPI.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hello.Services.ProductAPI.Repositories.Implementations
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly DbContext dbContext;
+        private readonly ApplicationDbContext dbContext;
 
-        public GenericRepository(DbContext dbContext)
+        public GenericRepository(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
