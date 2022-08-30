@@ -1,7 +1,7 @@
 ﻿using Hello.Services.ProductAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Hello.Services.ProductAPI.DbContexts
+namespace Hello.Services.ProductAPI.Repositories
 {
     public class ApplicationDbContext : DbContext
     {
