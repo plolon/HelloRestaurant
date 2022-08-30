@@ -22,43 +22,81 @@ namespace Hello.Services.ProductAPI.Controllers
         }
         // GET: api/<ProductController>
         [HttpGet]
-        public async Task<IEnumerable<ProductDto>> Get()
+        public async Task<ResponseDto> Get()
         {
-            var products = await productRepository.GetAll();
-            return mapper.Map<IEnumerable<ProductDto>>(products);
+            try
+            {
+                var products = await productRepository.GetAll();
+                var productsDto = mapper.Map<IEnumerable<ProductDto>>(products);
+                return HandleResponse.GetSuccessResponse(productsDto, "");
+            }
+            catch (Exception ex)
+            {
+                return ex.GetFailedResponse();
+            }
         }
 
         // GET api/<ProductController>/5
         [HttpGet("{id}")]
-        public async Task<ProductDto> Get(int id)
+        public async Task<ResponseDto> Get(int id)
         {
-            var product = await productRepository.GetById(id);
-            return mapper.Map<ProductDto>(product);
+            try
+            {
+                var product = await productRepository.GetById(id);
+                var productDto = mapper.Map<ProductDto>(product);
+                return HandleResponse.GetSuccessResponse(productDto, "");
+            }
+            catch (Exception ex)
+            {
+                return ex.GetFailedResponse();
+            }
         }
 
         // POST api/<ProductController>
         [HttpPost]
-        public async Task<ProductDto> Post([FromBody] ProductDto productDto)
+        public async Task<ResponseDto> Post([FromBody] ProductDto productDto)
         {
-            var product = mapper.Map<Product>(productDto);
-            await productRepository.Create(product);
-            return productDto;
+            try
+            {
+                var product = mapper.Map<Product>(productDto);
+                await productRepository.Create(product);
+                return HandleResponse.GetSuccessResponse(productDto, "");
+            }
+            catch (Exception ex)
+            {
+                return ex.GetFailedResponse();
+            }
         }
 
         // PUT api/<ProductController>/5
         [HttpPut]
-        public async Task<ProductDto> Put([FromBody] ProductDto productDto)
+        public async Task<ResponseDto> Put([FromBody] ProductDto productDto)
         {
-            var product = mapper.Map<Product>(productDto);
-            await productRepository.Update(product);
-            return productDto;
+            try
+            {
+                var product = mapper.Map<Product>(productDto);
+                await productRepository.Update(product);
+                return HandleResponse.GetSuccessResponse(productDto, "");
+            }
+            catch (Exception ex)
+            {
+                return ex.GetFailedResponse();
+            }
         }
 
         // DELETE api/<ProductController>/5
         [HttpDelete("{id}")]
-        public async Task<bool> Delete(int id)
+        public async Task<ResponseDto> Delete(int id)
         {
-            return await productRepository.Delete(id);
+            try
+            {
+                await productRepository.Delete(id);
+                return HandleResponse.GetSuccessResponse(true, "");
+            }
+            catch (Exception ex)
+            {
+                return ex.GetFailedResponse();
+            }
         }
     }
 }
