@@ -1,4 +1,4 @@
-﻿using Hello.Services.ProductAPI.DTOs;
+﻿using Hello.Web.DTOs;
 using Hello.Web.Models;
 using Hello.Web.Services.Interfaces;
 using Newtonsoft.Json;

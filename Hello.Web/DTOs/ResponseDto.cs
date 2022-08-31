@@ -1,4 +1,4 @@
-﻿namespace Hello.Services.ProductAPI.DTOs
+﻿namespace Hello.Web.DTOs
 {
     public class ResponseDto
     {

@@ -1,4 +1,4 @@
-﻿using Hello.Services.ProductAPI.DTOs;
+﻿using Hello.Web.DTOs;
 using Hello.Web.Models;
 
 namespace Hello.Web.Services.Interfaces

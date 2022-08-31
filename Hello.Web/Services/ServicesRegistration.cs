@@ -10,7 +10,7 @@ namespace Hello.Web.Services
         {
             services.AddHttpClient<IProductService, ProductService>();
             ProductAPIBase = configuration["ServiceUrls:ProductAPI"];
-            services.AddControllersWithViews();
+            services.AddScoped<IProductService, ProductService>();
             return services;
         }
     }

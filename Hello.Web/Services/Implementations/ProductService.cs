@@ -20,7 +20,7 @@ namespace Hello.Web.Services.Implementations
             {
                 ApiMethod = ApiMethod.POST,
                 Data = productDto,
-                Url = ProductAPIBase + "/api/products",
+                Url = ProductAPIBase + "/api/product",
                 AccessToken = ""
             });
         }
@@ -30,7 +30,7 @@ namespace Hello.Web.Services.Implementations
             return await SendAsync<T>(new ApiRequest()
             {
                 ApiMethod = ApiMethod.DELETE,
-                Url = ProductAPIBase + $"/api/products/{id}",
+                Url = ProductAPIBase + $"/api/product/{id}",
                 AccessToken = ""
             });
         }
@@ -40,7 +40,7 @@ namespace Hello.Web.Services.Implementations
             return await SendAsync<T>(new ApiRequest()
             {
                 ApiMethod = ApiMethod.GET,
-                Url = ProductAPIBase + "/api/products",
+                Url = ProductAPIBase + "/api/product",
                 AccessToken = ""
             });
         }
@@ -50,7 +50,7 @@ namespace Hello.Web.Services.Implementations
             return await SendAsync<T>(new ApiRequest()
             {
                 ApiMethod = ApiMethod.GET,
-                Url = ProductAPIBase + $"/api/products/{id}",
+                Url = ProductAPIBase + $"/api/product/{id}",
                 AccessToken = ""
             });
         }
@@ -61,7 +61,7 @@ namespace Hello.Web.Services.Implementations
             {
                 ApiMethod = ApiMethod.PUT,
                 Data = productDto,
-                Url = ProductAPIBase + "/api/products",
+                Url = ProductAPIBase + "/api/product",
                 AccessToken = ""
             });
         }
