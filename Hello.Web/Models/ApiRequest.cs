@@ -1,4 +1,6 @@
-﻿namespace Hello.Web.Models
+﻿using static Hello.Web.Models.SD;
+
+namespace Hello.Web.Models
 {
     public class ApiRequest
     {
@@ -8,11 +10,15 @@
         public string AccessToken { get; set; }
     }
 
-    public enum ApiMethod
+    public static class SD
     {
-        GET,
-        POST,
-        PUT,
-        DELETE,
+        public static string ProductAPIBase { get; set; }
+        public enum ApiMethod
+        {
+            GET,
+            POST,
+            PUT,
+            DELETE,
+        }
     }
 }
