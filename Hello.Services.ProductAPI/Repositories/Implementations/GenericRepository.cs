@@ -37,7 +37,9 @@ namespace Hello.Services.ProductAPI.Repositories.Implementations
         {
             try
             {
-                var entity = GetById(id);
+                var entity = await dbContext.Set<T>().FindAsync(id);
+                if (entity == null)
+                    return false;
                 dbContext.Remove(entity);
                 await dbContext.SaveChangesAsync();
                 return true;

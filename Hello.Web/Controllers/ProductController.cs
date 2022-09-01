@@ -78,26 +78,23 @@ namespace Hello.Web.Controllers
                 return View();
             }
         }
-
-        // GET: ProductController/Delete/5
-        public IActionResult Delete(int id)
-        {
-            return View();
-        }
-
         // POST: ProductController/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> Delete(int productId)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var response = await productService.DeleteProductAsync<ResponseDto>(productId);
+                if (response != null && response.Success)
+                {
+                    return RedirectToAction("ProductIndex");
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ModelState.AddModelError("", ex.Message);
             }
+            return View();
         }
     }
 }
