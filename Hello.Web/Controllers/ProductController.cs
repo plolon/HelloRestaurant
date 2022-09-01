@@ -41,11 +41,11 @@ namespace Hello.Web.Controllers
         // POST: ProductController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ProductDto productDto)
+        public async Task<IActionResult> Create(ProductDto model)
         {
             try
             {
-                var response = await productService.CreateProductAsync<ResponseDto>(productDto);
+                var response = await productService.CreateProductAsync<ResponseDto>(model);
                 if (response != null && response.Success)
                 {
                     return RedirectToAction("ProductIndex");
@@ -59,27 +59,39 @@ namespace Hello.Web.Controllers
         }
 
         // GET: ProductController/Edit/5
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int productId)
         {
-            return View();
+            var response = await productService.GetProductByIdAsync<ResponseDto>(productId);
+            if(response != null && response.Success)
+            {
+                ProductDto model = JsonConvert.DeserializeObject<ProductDto>(Convert.ToString(response.Result));
+                return View(model);
+            }
+            return NotFound();
         }
 
         // POST: ProductController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(ProductDto model)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var response = await productService.UpdateProductAsync<ResponseDto>(model);
+                if (response != null && response.Success)
+                {
+                    return RedirectToAction("ProductIndex");
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ModelState.AddModelError("", ex.Message);
             }
+            return View(model);
         }
         // POST: ProductController/Delete/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int productId)
         {
             try

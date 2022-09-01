@@ -21,7 +21,7 @@
                   <p class="card-text">@product.Name</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <a class="btn btn-sm btn-outline-secondary" asp-action="EditProduct" asp-route-productId="@product.ProductId"><i class="fa-solid fa-pen-to-square"></i><span class="mx-1">Edit</span></a>
+                      <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-productId="@product.ProductId"><i class="fa-solid fa-pen-to-square"></i><span class="mx-1">Edit</span></a>
                       <form asp-action="Delete">
                           <input name="ProductId" value="@product.ProductId" hidden/>
                           <button type="submit" class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-trash"></i><span class="mx-1">Delete</span></button>
